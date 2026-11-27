@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Mis Reservas · Hueco Relámpago</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body class="page-reservas">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-dot"></span>
+        <span>HUECO RELÁMPAGO</span>
+      </a>
+
+      <nav class="nav-links">
+        <a class="nav-link" href="../index.html">Huecos activos</a>
+        <a class="nav-link" href="publicar.html">Publicar hueco</a>
+        <a class="nav-link active" href="mis-reservas.html">Mis reservas</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Mis reservas confirmadas</h1>
+        <p class="page-subtitle">Códigos y valores finales acordados en pesos colombianos (COP).</p>
+      </div>
+      <a class="btn btn-primary" href="../index.html">Explorar huecos</a>
+    </div>
+
+    <section id="bookings-list" class="slots-grid"></section>
+  </main>
+
+  <script type="module">
+    import { initBookingsPage } from "../assets/js/ui.js";
+    initBookingsPage();
+  </script>
+</body>
+</html>
