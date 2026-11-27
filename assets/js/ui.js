@@ -35,21 +35,21 @@ export function initSimControls(onChange) {
     addSimOffsetMinutes(5);
     renderSimIndicator();
     onChange?.();
-    showToast("Se adelantaron 5 minutos en la simulación.");
+    showToast("Se adelantaron 5 minutos.");
   });
 
   document.getElementById("btn-sim-10")?.addEventListener("click", () => {
     addSimOffsetMinutes(10);
     renderSimIndicator();
     onChange?.();
-    showToast("Se adelantaron 10 minutos en la simulación.");
+    showToast("Se adelantaron 10 minutos.");
   });
 
   document.getElementById("btn-sim-reset")?.addEventListener("click", () => {
     resetSimOffsetMinutes();
     renderSimIndicator();
     onChange?.();
-    showToast("Simulación restablecida a la hora actual.");
+    showToast("Hora restablecida.");
   });
 
   document.getElementById("btn-clear-demos")?.addEventListener("click", () => {
@@ -64,6 +64,8 @@ export function initIndexPage() {
   const searchInput = document.getElementById("search-input");
   const sortSelect = document.getElementById("sort-select");
   const chipsContainer = document.getElementById("category-chips");
+
+  if (!grid || !searchInput || !sortSelect || !chipsContainer) return;
 
   const categories = [
     "Todas",
@@ -190,6 +192,7 @@ export function initIndexPage() {
 export function initPublishPage() {
   const form = document.getElementById("publish-form");
   const preview = document.getElementById("rule-preview");
+  if (!form || !preview) return;
 
   function updatePreview() {
     const startPrice = Number(document.getElementById("startPrice").value) || 0;
@@ -204,7 +207,7 @@ export function initPublishPage() {
     preview.innerHTML = `
       <strong>Regla configurada:</strong> Inicia en <strong>${formatCOP(startPrice)}</strong> y baja
       <strong>${formatCOP(stepCOP)}</strong> cada <strong>${intervalMinutes} min</strong> hasta llegar a un mínimo de
-      <strong>${formatCOP(minPrice)}</strong> (aprox. ${stepsNeeded} bajadas en ${totalMinutes} min).
+      <strong>${formatCOP(minPrice)}</strong> (${stepsNeeded} bajadas en ${totalMinutes} min).
     `;
   }
 
@@ -241,7 +244,7 @@ export function initPublishPage() {
       stepCOP
     });
 
-    showToast("Hueco publicado. Ya aparece disponible en Inicio.");
+    showToast("Hueco publicado. Ya aparece en Huecos activos.");
     form.reset();
     updatePreview();
   });
@@ -251,8 +254,9 @@ export function initPublishPage() {
 
 export function initBookingsPage() {
   const list = document.getElementById("bookings-list");
-  const bookings = getBookings();
+  if (!list) return;
 
+  const bookings = getBookings();
   if (!bookings.length) {
     list.innerHTML = `<div class="empty-state">Aún no tienes reservas confirmadas.</div>`;
     return;
