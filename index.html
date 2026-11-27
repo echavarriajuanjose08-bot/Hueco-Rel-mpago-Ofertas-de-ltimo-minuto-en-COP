@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hueco Relámpago · Ofertas de último minuto en COP</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body class="page-inicio">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="index.html">
+        <span class="brand-dot"></span>
+        <span>HUECO RELÁMPAGO</span>
+      </a>
+
+      <nav class="nav-links">
+        <a class="nav-link active" href="index.html">Huecos activos</a>
+        <a class="nav-link" href="pages/publicar.html">Publicar hueco</a>
+        <a class="nav-link" href="pages/mis-reservas.html">Mis reservas</a>
+      </nav>
+
+      <div class="sim-controls">
+        <span id="sim-offset-badge" class="badge">Hora real</span>
+        <button id="btn-sim-5" type="button" class="btn">+5 min</button>
+        <button id="btn-sim-10" type="button" class="btn">+10 min</button>
+        <button id="btn-sim-reset" type="button" class="btn">Reset</button>
+        <button id="btn-clear-demos" type="button" class="btn btn-danger">Quitar ejemplos</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Huecos disponibles hoy</h1>
+        <p class="page-subtitle">Precios en pesos colombianos (COP) según la regla configurada por cada profesional.</p>
+      </div>
+      <a class="btn btn-primary" href="pages/publicar.html">+ Publicar un hueco</a>
+    </div>
+
+    <section class="toolbar">
+      <input id="search-input" class="input" type="search" placeholder="Buscar por servicio, negocio o zona..." />
+      <select id="sort-select" class="select">
+        <option value="recent">Más recientes</option>
+        <option value="price-asc">Menor precio actual</option>
+        <option value="discount-desc">Mayor descuento</option>
+      </select>
+      <a class="btn btn-success" href="pages/mis-reservas.html">Ver reservas</a>
+    </section>
+
+    <div id="category-chips" class="chips"></div>
+
+    <section id="slots-grid" class="slots-grid"></section>
+  </main>
+
+  <script type="module">
+    import { initIndexPage } from "./assets/js/ui.js";
+    initIndexPage();
+  </script>
+</body>
+</html>
