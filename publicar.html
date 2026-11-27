@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Publicar Hueco · Hueco Relámpago</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+</head>
+<body class="page-publicar">
+  <header class="topbar">
+    <div class="topbar-inner">
+      <a class="brand" href="../index.html">
+        <span class="brand-dot"></span>
+        <span>HUECO RELÁMPAGO</span>
+      </a>
+
+      <nav class="nav-links">
+        <a class="nav-link" href="../index.html">Huecos activos</a>
+        <a class="nav-link active" href="publicar.html">Publicar hueco</a>
+        <a class="nav-link" href="mis-reservas.html">Mis reservas</a>
+      </nav>
+
+      <div class="sim-controls">
+        <span id="sim-offset-badge" class="badge">Hora real</span>
+        <button id="btn-sim-5" type="button" class="btn">+5 min</button>
+        <button id="btn-sim-10" type="button" class="btn">+10 min</button>
+        <button id="btn-sim-reset" type="button" class="btn">Reset</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    <div class="page-header">
+      <div>
+        <h1 class="page-title">Publicar un hueco disponible</h1>
+        <p class="page-subtitle">Define tu servicio, horario, precio inicial, mínimo y cuánto baja en cada intervalo.</p>
+      </div>
+      <a class="btn" href="../index.html">← Volver al listado</a>
+    </div>
+
+    <form id="publish-form" class="form-card">
+      <div class="form-grid">
+        <div class="field">
+          <label for="businessName">Negocio o profesional</label>
+          <input id="businessName" class="input" type="text" required placeholder="Ej. Estilo Urbano" />
+        </div>
+
+        <div class="field">
+          <label for="serviceName">Servicio a realizar</label>
+          <input id="serviceName" class="input" type="text" required placeholder="Ej. Corte y lavado capilar" />
+        </div>
+
+        <div class="field">
+          <label for="category">Categoría</label>
+          <select id="category" class="select">
+            <option value="Barbería & Estética">Barbería & Estética</option>
+            <option value="Odontología & Salud">Odontología & Salud</option>
+            <option value="Entrenamiento">Entrenamiento</option>
+            <option value="Mecánica & Taller">Mecánica & Taller</option>
+            <option value="Otros">Otros</option>
+          </select>
+        </div>
+
+        <div class="field">
+          <label for="location">Ubicación / sector</label>
+          <input id="location" class="input" type="text" required placeholder="Ej. Centro" />
+        </div>
+
+        <div class="field">
+          <label for="timeLabel">Horario del hueco</label>
+          <input id="timeLabel" class="input" type="text" required placeholder="Ej. Hoy · 3:30 PM" />
+        </div>
+
+        <div class="field">
+          <label for="startPrice">Precio inicial (COP)</label>
+          <input id="startPrice" class="input" type="number" min="1000" step="500" value="50000" required />
+        </div>
+
+        <div class="field">
+          <label for="minPrice">Precio mínimo / piso (COP)</label>
+          <input id="minPrice" class="input" type="number" min="0" step="500" value="25000" required />
+        </div>
+
+        <div class="field">
+          <label for="intervalMinutes">Cada cuántos minutos baja</label>
+          <input id="intervalMinutes" class="input" type="number" min="1" max="180" value="10" required />
+        </div>
+
+        <div class="field">
+          <label for="stepCOP">Cuánto baja en cada tramo (COP)</label>
+          <input id="stepCOP" class="input" type="number" min="500" step="500" value="5000" required />
+        </div>
+      </div>
+
+      <div id="rule-preview" class="preview-box"></div>
+
+      <div style="margin-top: 20px; display: flex; gap: 10px; flex-wrap: wrap;">
+        <button type="submit" class="btn btn-primary">Publicar hueco en COP</button>
+        <a class="btn" href="../index.html">Ver huecos activos</a>
+      </div>
+    </form>
+  </main>
+
+  <script type="module">
+    import { initPublishPage } from "../assets/js/ui.js";
+    initPublishPage();
+  </script>
+</body>
+</html>
