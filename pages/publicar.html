@@ -1,64 +1,156 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hueco Relámpago · Ofertas de último minuto en COP</title>
+  <title>Publicar hueco · Hueco Relámpago</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="./assets/css/styles.css." />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <style>
+    .publicar-wrap { max-width: 720px; margin: 28px auto; padding: 0 16px 48px; }
+    .publicar-card { background: #161b22; border: 1px solid #30363d; border-radius: 14px; padding: 22px; color: #e6edf3; }
+    .publicar-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-top: 16px; }
+    .publicar-field { display: flex; flex-direction: column; gap: 6px; }
+    .publicar-field.full { grid-column: 1 / -1; }
+    .publicar-field label { font-size: 13px; font-weight: 600; color: #c9d1d9; }
+    .publicar-field input, .publicar-field select {
+      background: #0d1117; border: 1px solid #30363d; color: #e6edf3;
+      border-radius: 8px; padding: 10px 12px; font-size: 14px;
+    }
+    .publicar-actions { display: flex; gap: 10px; margin-top: 18px; flex-wrap: wrap; }
+    .btn-primario { background: #238636; color: #fff; border: none; border-radius: 8px; padding: 10px 16px; font-weight: 700; cursor: pointer; }
+    .btn-secundario { background: #21262d; color: #e6edf3; border: 1px solid #30363d; border-radius: 8px; padding: 10px 14px; text-decoration: none; font-weight: 600; }
+    .mensaje-ok { margin-top: 14px; padding: 12px; border-radius: 8px; background: rgba(35, 134, 54, 0.2); border: 1px solid #2ea043; color: #7ee787; display: none; }
+    @media (max-width: 600px) { .publicar-grid { grid-template-columns: 1fr; } }
+  </style>
 </head>
 <body class="page-inicio">
   <header class="topbar">
     <div class="topbar-inner">
-      <a class="brand" href="./index.html.">
+      <a class="brand" href="../index.html">
         <span class="brand-dot"></span>
         <span>HUECO RELÁMPAGO</span>
       </a>
-
       <nav class="nav-links">
-        <a class="nav-link active" href="./index.html">Huecos activos</a>
-        <a class="nav-link" href="./pages/publicar.html">Publicar hueco</a>
-        <a class="nav-link" href="./pages/mis-reservas.html">Mis reservas</a>
+        <a class="nav-link" href="../index.html">Huecos activos</a>
+        <a class="nav-link active" href="./publicar.html">Publicar hueco</a>
+        <a class="nav-link" href="./mis-reservas.html">Mis reservas</a>
       </nav>
-
-      <div class="sim-controls">
-        <span id="sim-offset-badge" class="badge">Hora real</span>
-        <button id="btn-sim-5" type="button" class="btn">+5 min</button>
-        <button id="btn-sim-10" type="button" class="btn">+10 min</button>
-        <button id="btn-sim-reset" type="button" class="btn">Reset</button>
-        <button id="btn-clear-demos" type="button" class="btn btn-danger">Quitar ejemplos</button>
-      </div>
     </div>
   </header>
 
-  <main class="container">
-    <div class="page-header">
-      <div>
-        <h1 class="page-title">Huecos disponibles hoy</h1>
-        <p class="page-subtitle">Precios en pesos colombianos (COP) según la regla configurada por cada profesional.</p>
-      </div>
-      <a class="btn btn-primary" href="./pages/publicar.html">+ Publicar un hueco</a>
-    </div>
+  <main class="publicar-wrap">
+    <section class="publicar-card">
+      <h1>Publicar un hueco disponible</h1>
+      <p>Precios en pesos colombianos (COP) para ofertas de último minuto.</p>
 
-    <section class="toolbar">
-      <input id="search-input" class="input" type="search" placeholder="Buscar por servicio, negocio o zona..." />
-      <select id="sort-select" class="select">
-        <option value="recent">Más recientes</option>
-        <option value="price-asc">Menor precio actual</option>
-        <option value="discount-desc">Mayor descuento</option>
-      </select>
-      <a class="btn btn-success" href="./pages/mis-reservas.html">Ver reservas</a>
+      <form id="form-publicar-hueco">
+        <div class="publicar-grid">
+          <div class="publicar-field">
+            <label for="servicio">Servicio</label>
+            <input id="servicio" name="servicio" type="text" placeholder="Ej. Corte clásico + perfilado" required />
+          </div>
+
+          <div class="publicar-field">
+            <label for="negocio">Negocio o profesional</label>
+            <input id="negocio" name="negocio" type="text" placeholder="Ej. Barbería Central" required />
+          </div>
+
+          <div class="publicar-field">
+            <label for="categoria">Categoría</label>
+            <select id="categoria" name="categoria">
+              <option value="Barbería & Estética">Barbería & Estética</option>
+              <option value="Odontología & Salud">Odontología & Salud</option>
+              <option value="Entrenamiento">Entrenamiento</option>
+              <option value="Mecánica & Taller">Mecánica & Taller</option>
+              <option value="Otros">Otros</option>
+            </select>
+          </div>
+
+          <div class="publicar-field">
+            <label for="horario">Horario disponible</label>
+            <input id="horario" name="horario" type="text" placeholder="Ej. Hoy · 5:30 PM" required />
+          </div>
+
+          <div class="publicar-field">
+            <label for="precioInicial">Precio inicial (COP)</label>
+            <input id="precioInicial" name="precioInicial" type="number" min="1000" step="500" value="45000" required />
+          </div>
+
+          <div class="publicar-field">
+            <label for="precioMinimo">Precio mínimo (COP)</label>
+            <input id="precioMinimo" name="precioMinimo" type="number" min="1000" step="500" value="25000" required />
+          </div>
+
+          <div class="publicar-field">
+            <label for="bajada">Bajada por tramo (COP)</label>
+            <input id="bajada" name="bajada" type="number" min="500" step="500" value="5000" required />
+          </div>
+
+          <div class="publicar-field">
+            <label for="cadaMinutos">Cada cuántos minutos baja</label>
+            <input id="cadaMinutos" name="cadaMinutos" type="number" min="1" max="120" value="10" required />
+          </div>
+        </div>
+
+        <div class="publicar-actions">
+          <button type="submit" class="btn-primario">Publicar hueco</button>
+          <a href="../index.html" class="btn-secundario">Volver a Huecos activos</a>
+        </div>
+
+        <div id="mensaje-publicado" class="mensaje-ok"></div>
+      </form>
     </section>
-
-    <div id="category-chips" class="chips"></div>
-    <section id="slots-grid" class="slots-grid"></section>
   </main>
 
-  <script type="module">
-    import { initIndexPage } from "./assets/js/ui.js";
-    initIndexPage();
+  <script>
+    (function () {
+      const form = document.getElementById("form-publicar-hueco");
+      const msg = document.getElementById("mensaje-publicado");
+
+      form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        const inicial = Number(document.getElementById("precioInicial").value) || 0;
+        const minimo = Number(document.getElementById("precioMinimo").value) || 0;
+        const bajada = Number(document.getElementById("bajada").value) || 0;
+        const cadaMin = Number(document.getElementById("cadaMinutos").value) || 10;
+
+        const nuevoHueco = {
+          id: "hueco_" + Date.now(),
+          servicio: document.getElementById("servicio").value.trim(),
+          negocio: document.getElementById("negocio").value.trim(),
+          categoria: document.getElementById("categoria").value,
+          horario: document.getElementById("horario").value.trim(),
+          precioInicial: inicial,
+          precioActual: inicial,
+          precioMinimo: minimo,
+          bajada: bajada,
+          cadaMinutos: cadaMin,
+          creadoEn: new Date().toISOString()
+        };
+
+        const clavesPosibles = ["huecos_relampago", "huecoRelampagoHuecos", "huecos"];
+        const claveElegida = clavesPosibles.find((k) => localStorage.getItem(k) !== null) || "huecos_relampago";
+
+        let lista = [];
+        try {
+          const parsed = JSON.parse(localStorage.getItem(claveElegida) || "[]");
+          if (Array.isArray(parsed)) lista = parsed;
+        } catch (_) {
+          lista = [];
+        }
+
+        lista.unshift(nuevoHueco);
+        localStorage.setItem(claveElegida, JSON.stringify(lista));
+
+        msg.style.display = "block";
+        msg.textContent = "Hueco guardado: " + nuevoHueco.servicio + " (" + nuevoHueco.precioActual.toLocaleString("es-CO") + " COP). Ya puedes ir a Huecos activos.";
+        form.reset();
+      });
+    })();
   </script>
 </body>
 </html>
