@@ -1,6 +1,6 @@
-const SLOTS_KEY = "hueco_relampago_slots_v1";
-const BOOKINGS_KEY = "hueco_relampago_bookings_v1";
-const OFFSET_KEY = "hueco_relampago_offset_min_v1";
+const SLOTS_KEY = "hueco_relampago_slots_v2";
+const BOOKINGS_KEY = "hueco_relampago_bookings_v2";
+const OFFSET_KEY = "hueco_relampago_offset_min_v2";
 
 const DEFAULT_SLOTS = [
   {
@@ -55,7 +55,7 @@ export function getSlots() {
   }
   try {
     const parsed = JSON.parse(raw);
-    return Array.isArray(parsed) ? parsed : [];
+    return Array.isArray(parsed) ? parsed : [...DEFAULT_SLOTS];
   } catch {
     return [...DEFAULT_SLOTS];
   }
